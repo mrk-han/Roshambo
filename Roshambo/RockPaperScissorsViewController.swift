@@ -23,15 +23,15 @@ class RockPaperScissorsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "scissorsSegue" { // only storyboard
-            print("user tapped scissors - in prepare function")
+            print("user tapped scissors - in prepare function - SB ONLY DEMO")
             
             let controller = segue.destination as! ResultsViewController
             controller.resultsImage = nil
             controller.resultsLabel = nil
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
-            print("user tapped paper - in prepare func")
-
+            print("user tapped paper - in prepare func - SB AND CODE DEMO")
+            
             let controller = segue.destination as! ResultsViewController
             controller.resultsImage = nil
             controller.resultsLabel = nil
@@ -41,7 +41,7 @@ class RockPaperScissorsViewController: UIViewController {
     
     // Storyboard AND Code Demo (User selects Paper)
     @IBAction func letsPlayPaper() {
-        print("letsPlayPaper method call")
+        print("letsPlayPaper method call - SB AND CODE DEMO")
         
         // perform paper segue
         self.performSegue(withIdentifier: "paperSegue", sender: self)
@@ -49,7 +49,8 @@ class RockPaperScissorsViewController: UIViewController {
     
     // Code only, NO STORYBOARD demo (User selects Rock)
     @IBAction func letsPlayRock() {
-        print("letsPlayRock method call")
+        print("user tapped rock - CODE ONLY DEMO")
+        print("letsPlayRock method call - CODE ONLY DEMO")
         
         // create and cast view controller
         let controller: ResultsViewController
