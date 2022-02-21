@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--RockPaperScissorsViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Roshambo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="RockPaperScissorsViewController" id="BYZ-38-t0r" customClass="RockPaperScissorsViewController" customModule="Roshambo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,6 +32,9 @@
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="paper" imageContentMode="scaleAspectFit"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="letsPlayPaper" destination="BYZ-38-t0r" eventType="touchUpInside" id="aEK-gh-H6G"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-Fu-Yk0" userLabel="Empty View">
                                                 <rect key="frame" x="223.5" y="0.0" width="111.5" height="162"/>
@@ -52,7 +55,7 @@
                                                     <backgroundConfiguration key="background" image="rock" imageContentMode="scaleAspectFit"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="yhG-Il-1Wk" kind="presentation" id="TKa-Ao-TNb"/>
+                                                    <action selector="letsPlayRock" destination="BYZ-38-t0r" eventType="touchUpInside" id="mO1-IO-do9"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7G8-O3-ZZl" userLabel="Empty View">
@@ -65,6 +68,9 @@
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="scissors" imageContentMode="scaleAspectFit"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="yhG-Il-1Wk" kind="presentation" identifier="scissorsSegue" id="BM4-Xd-h8e"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -119,28 +125,74 @@
                             <constraint firstItem="xgq-TU-8SK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="zjE-Zs-0Wb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="paperButton" destination="SYc-a9-s65" id="R81-yq-qrf"/>
+                        <outlet property="rockButton" destination="Iuz-nn-Rtl" id="3wS-hX-eHQ"/>
+                        <outlet property="scissorsButton" destination="YgO-uP-5T5" id="aPJ-Oc-cej"/>
+                        <segue destination="yhG-Il-1Wk" kind="presentation" identifier="paperSegue" id="kC4-2w-G1r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="138"/>
         </scene>
-        <!--Results View Controller-->
+        <!--ResultsViewController-->
         <scene sceneID="hHD-CH-ZwO">
             <objects>
-                <viewController id="yhG-Il-1Wk" customClass="ResultsViewController" customModule="Roshambo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultsViewController" title="ResultsViewController" id="yhG-Il-1Wk" userLabel="ResultsViewController" customClass="ResultsViewController" customModule="Roshambo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OIv-HW-Asw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VC6-nJ-quj">
+                                <rect key="frame" x="40" y="60" width="295" height="527"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-1X-815">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="175.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="itsATie" imageContentMode="scaleAspectFit"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's a tie!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SrU-GC-h5c">
+                                        <rect key="frame" x="0.0" y="175.5" width="295" height="176"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfp-dn-gil">
+                                        <rect key="frame" x="0.0" y="351.5" width="295" height="175.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Play Again"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Cf-9Z-MZ5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VC6-nJ-quj" firstAttribute="top" secondItem="6Cf-9Z-MZ5" secondAttribute="top" constant="60" id="GRA-qp-VSC"/>
+                            <constraint firstItem="6Cf-9Z-MZ5" firstAttribute="trailing" secondItem="VC6-nJ-quj" secondAttribute="trailing" constant="40" id="XAP-0i-RSB"/>
+                            <constraint firstItem="VC6-nJ-quj" firstAttribute="leading" secondItem="6Cf-9Z-MZ5" secondAttribute="leading" constant="40" id="c9q-g8-JEu"/>
+                            <constraint firstItem="6Cf-9Z-MZ5" firstAttribute="bottom" secondItem="VC6-nJ-quj" secondAttribute="bottom" constant="60" id="mW0-MY-1fK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playAgainButton" destination="cfp-dn-gil" id="bG9-QK-cRN"/>
+                        <outlet property="resultsImage" destination="BVJ-1X-815" id="DQr-Y9-ryb"/>
+                        <outlet property="resultsLabel" destination="SrU-GC-h5c" id="Xdi-2F-S1l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2s-ee-fzh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="980" y="136"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="kC4-2w-G1r"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="itsATie" width="183" height="200"/>
         <image name="paper" width="75" height="65"/>
         <image name="rock" width="75" height="65"/>
         <image name="scissors" width="75" height="65"/>
