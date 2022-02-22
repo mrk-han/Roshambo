@@ -61,19 +61,71 @@ class RockPaperScissorsViewController: UIViewController {
         }
     }
     
-    // playerRoshambo is decided by the segue.identifier because what the user clicks triggers a named segue which shows their intent
+    /*
+     playerRoshambo is decided by the segue.identifier because what the user clicks triggers a named segue which shows their intent. It will be nil if the user chooses rock, because the rockButton creater the viewcontroller without storyboard and therefore will not use a segue.
+     */
     func decideGameResult(between aiRoshambo: String, and playerRoshambo: String?) -> String {
         
-        if (aiRoshambo == "Rock") && (playerRoshambo == "paperSegue") {
-            return "Lose1"
-        } else if (aiRoshambo == "Rock") && (playerRoshambo == "scissorsSegue") {
-            return "Win1"
-        } else if (aiRoshambo == "Rock") && playerRoshambo == nil {
-            return "Tie1" // segue is nil if using Code method for Rock because VC is presented without storyboard
+        print("Player: \(playerRoshambo ?? "rockSegue")")
+        print("AI: \(aiRoshambo)")
+
+        
+//        if (aiRoshambo == "Rock") && (playerRoshambo == "paperSegue") {
+//            return "Win1"
+//        } else if (aiRoshambo == "Rock") && (playerRoshambo == "scissorsSegue") {
+//            return "Lose1"
+//        } else if (aiRoshambo == "Rock") && playerRoshambo == nil {
+//            return "Tie1"
+//        } else if (aiRoshambo == "Paper") && (playerRoshambo == "paperSegue") {
+//            return "Tie2"
+//        } else if (aiRoshambo == "Paper") && (playerRoshambo == "scissorsSegue") {
+//            return "Win2"
+//        } else if (aiRoshambo == "Paper") && playerRoshambo == nil {
+//            return "Lose2"
+//        } else if (aiRoshambo == "Scissors") && (playerRoshambo == "paperSegue") {
+//            return "Lose3"
+//        } else if (aiRoshambo == "Scissors") && (playerRoshambo == "scissorsSegue") {
+//            return "Tie3"
+//        } else if (aiRoshambo == "Scissors") && playerRoshambo == nil {
+//            return "Win3"
+//        }
+        
+        switch playerRoshambo {
+        case nil:
+            if aiRoshambo == "Rock" {
+                return "Tie"
+            }
+            if aiRoshambo == "Paper" {
+                return "Lose"
+            }
+            if aiRoshambo == "Scissors" {
+                return "Win"
+            }
+        case "paperSegue":
+            if aiRoshambo == "Rock" {
+                return "Win"
+            }
+            if aiRoshambo == "Paper" {
+                return "Tie"
+            }
+            if aiRoshambo == "Scissors" {
+                return "Lose"
+            }
+        case "scissorsSegue":
+            if aiRoshambo == "Rock" {
+                return "Lose"
+            }
+            if aiRoshambo == "Paper" {
+                return "Win"
+            }
+            if aiRoshambo == "Scissors" {
+                return "Tie"
+            }
+            
+        case .some(_):
+            return "This should not happen"
         }
-        
-        return aiRoshambo
-        
+        return "This also should not happen"
     }
     
     // MARK: Actions
