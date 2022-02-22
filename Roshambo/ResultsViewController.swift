@@ -16,6 +16,7 @@ class ResultsViewController: UIViewController {
     var didUserChooseRock: Bool?
     var didUserChoosePaper: Bool?
     var didUserChooseScissors: Bool?
+    var result: String?
     
     // MARK: Outlets
     
@@ -31,9 +32,10 @@ class ResultsViewController: UIViewController {
         // case rock && didUserChoosePaper -> show loss
         // case rock && didUserChooseScissors -> show win
         // repeat for cases paper & scissors
+        // return result
         
-        if let randomRoshamboValue = self.randomRoshamboValue {
-            self.resultsImage.setBackgroundImage(UIImage(named: "\(randomRoshamboValue)"), for: .normal)
+        if let result = self.result {
+            self.resultsImage.setBackgroundImage(UIImage(named: "\(result)"), for: .normal)
         }
         
         self.resultsImage.alpha = 0
