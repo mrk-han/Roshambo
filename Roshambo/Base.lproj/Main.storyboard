@@ -164,6 +164,9 @@
                                         <rect key="frame" x="0.0" y="351.5" width="295" height="175.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Play Again"/>
+                                        <connections>
+                                            <action selector="dismiss" destination="yhG-Il-1Wk" eventType="touchUpInside" id="kKc-MF-Cg0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
