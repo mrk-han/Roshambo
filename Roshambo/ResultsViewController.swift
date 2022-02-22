@@ -10,12 +10,49 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     
+    // MARK: Properties
+    
+    var randomRoshamboValue: String?
+    var didUserChooseRock: Bool?
+    var didUserChoosePaper: Bool?
+    var didUserChooseScissors: Bool?
+    
+    // MARK: Outlets
+    
     @IBOutlet var resultsImage: UIButton!
     @IBOutlet var resultsLabel: UILabel!
     @IBOutlet var playAgainButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: Lifecycle + Overrides
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // TODO: switch randomRoshamboValue
+        // case rock && didUserChooseRock -> show tie
+        // case rock && didUserChoosePaper -> show loss
+        // case rock && didUserChooseScissors -> show win
+        // repeat for cases paper & scissors
         
+        if let randomRoshamboValue = self.randomRoshamboValue {
+            self.resultsImage.setBackgroundImage(UIImage(named: "\(randomRoshamboValue)"), for: .normal)
+        }
+        
+        self.resultsImage.alpha = 0
+        self.resultsLabel.alpha = 0
+        self.playAgainButton.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.resultsImage.alpha = 1
+            self.resultsLabel.alpha = 1
+            self.playAgainButton.alpha = 1
+        }
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func dismiss() {
+        // dismiss this view controller
+        self.dismiss(animated: true, completion: nil)
     }
 }

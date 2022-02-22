@@ -9,56 +9,72 @@ import UIKit
 
 class RockPaperScissorsViewController: UIViewController {
     
+    // MARK: Outlets
+    
     @IBOutlet var rockButton: UIButton!
     @IBOutlet var paperButton: UIButton!
     @IBOutlet var scissorsButton: UIButton!
     @IBOutlet var letsPlayLabel: UILabel!
     
+    // MARK: Lifecycle + Overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     // Storyboard only, no code demo (User selects Scissors)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "scissorsSegue" { // only storyboard
-            print("user tapped scissors - in prepare function - SB ONLY DEMO")
             
             let controller = segue.destination as! ResultsViewController
-            controller.resultsImage = nil
-            controller.resultsLabel = nil
+            controller.didUserChooseScissors = true
+            controller.randomRoshamboValue = generateRandomRoshambo()
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
-            print("user tapped paper - in prepare func - SB AND CODE DEMO")
             
             let controller = segue.destination as! ResultsViewController
-            controller.resultsImage = nil
-            controller.resultsLabel = nil
+            controller.didUserChoosePaper = true
+            controller.randomRoshamboValue = generateRandomRoshambo()
             
         }
     }
     
+    // MARK: Simulate computer AI
+    
+    func generateRandomRoshambo() -> String {
+        
+        // generate random Int32 using arc4random
+        let randomValue = 1 + arc4random() % 3
+        
+        switch Int(randomValue) {
+        case 1:
+            return "Rock"
+        case 2:
+            return "Paper"
+        case 3:
+            return "Scissors"
+        default:
+            return "This should never happen, number generated: \(randomValue)"
+        }
+    }
+    
+    // MARK: Actions
+    
     // Storyboard AND Code Demo (User selects Paper)
     @IBAction func letsPlayPaper() {
-        print("letsPlayPaper method call - SB AND CODE DEMO")
-        
-        // perform paper segue
         self.performSegue(withIdentifier: "paperSegue", sender: self)
     }
     
     // Code only, NO STORYBOARD demo (User selects Rock)
     @IBAction func letsPlayRock() {
-        print("user tapped rock - CODE ONLY DEMO")
-        print("letsPlayRock method call - CODE ONLY DEMO")
         
         // create and cast view controller
         let controller: ResultsViewController
         controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
         // prep next view
-        controller.resultsImage = nil
-        controller.resultsLabel = nil
+        controller.randomRoshamboValue = generateRandomRoshambo()
+        controller.didUserChooseRock = true
         
         // present next screen without segue
         present(controller, animated: true, completion: nil)
