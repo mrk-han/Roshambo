@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RockPaperScissorsViewController.swift
 //  Roshambo
 //
 //  Created by Mark Han on 2/20/22.
@@ -27,26 +27,29 @@ class RockPaperScissorsViewController: UIViewController {
         if segue.identifier == "scissorsSegue" { // only storyboard
             
             let controller = segue.destination as! ResultsViewController
-            controller.didUserChooseScissors = true
-            controller.randomRoshamboValue = generateRandomRoshambo()
+            
+            controller.result = decideGameResult(between: generateAIRoshambo(from: generateRandomNumber()), and: segue.identifier)
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
-            
             let controller = segue.destination as! ResultsViewController
-            controller.didUserChoosePaper = true
-            controller.randomRoshamboValue = generateRandomRoshambo()
+            
+            controller.result = decideGameResult(between: generateAIRoshambo(from: generateRandomNumber()), and: segue.identifier)
             
         }
     }
     
     // MARK: Simulate computer AI
     
-    func generateRandomRoshambo() -> String {
+    func generateRandomNumber() -> Int {
         
-        // generate random Int32 using arc4random
+        // generate random Int32 using arc4random -- generates 1 2 or 3
         let randomValue = 1 + arc4random() % 3
         
-        switch Int(randomValue) {
+        return Int(randomValue)
+    }
+    
+    func generateAIRoshambo(from number: Int) -> String {
+        switch Int(number) {
         case 1:
             return "Rock"
         case 2:
@@ -54,8 +57,23 @@ class RockPaperScissorsViewController: UIViewController {
         case 3:
             return "Scissors"
         default:
-            return "This should never happen, number generated: \(randomValue)"
+            return "This should never happen, number generated: \(number)"
         }
+    }
+    
+    // playerRoshambo is decided by the segue.identifier because what the user clicks triggers a named segue which shows their intent
+    func decideGameResult(between aiRoshambo: String, and playerRoshambo: String?) -> String {
+        
+        if (aiRoshambo == "Rock") && (playerRoshambo == "paperSegue") {
+            return "Lose1"
+        } else if (aiRoshambo == "Rock") && (playerRoshambo == "scissorsSegue") {
+            return "Win1"
+        } else if (aiRoshambo == "Rock") && playerRoshambo == nil {
+            return "Tie1" // segue is nil if using Code method for Rock because VC is presented without storyboard
+        }
+        
+        return aiRoshambo
+        
     }
     
     // MARK: Actions
@@ -73,8 +91,8 @@ class RockPaperScissorsViewController: UIViewController {
         controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
         // prep next view
-        controller.randomRoshamboValue = generateRandomRoshambo()
-        controller.didUserChooseRock = true
+        
+        controller.result = decideGameResult(between: generateAIRoshambo(from: generateRandomNumber()), and: nil)
         
         // present next screen without segue
         present(controller, animated: true, completion: nil)

@@ -12,10 +12,7 @@ class ResultsViewController: UIViewController {
     
     // MARK: Properties
     
-    var randomRoshamboValue: String?
-    var didUserChooseRock: Bool?
-    var didUserChoosePaper: Bool?
-    var didUserChooseScissors: Bool?
+    var userChoice: String?
     var result: String?
     
     // MARK: Outlets
@@ -27,16 +24,16 @@ class ResultsViewController: UIViewController {
     // MARK: Lifecycle + Overrides
     
     override func viewWillAppear(_ animated: Bool) {
-        // TODO: switch randomRoshamboValue
-        // case rock && didUserChooseRock -> show tie
-        // case rock && didUserChoosePaper -> show loss
-        // case rock && didUserChooseScissors -> show win
-        // repeat for cases paper & scissors
-        // return result
         
         if let result = self.result {
-            self.resultsImage.setBackgroundImage(UIImage(named: "\(result)"), for: .normal)
+            
+            print(result)
+            self.resultsLabel.text = "You win!!!!!!"
         }
+        
+//        if let result = self.result {
+//            self.resultsImage.setBackgroundImage(UIImage(named: "\(result)"), for: .normal)
+//        }
         
         self.resultsImage.alpha = 0
         self.resultsLabel.alpha = 0
