@@ -12,13 +12,33 @@ enum Move: CaseIterable {
     case paper
     case scissors
     
-    func gameResult(against move: Move) -> GameResult {
+    func evaluateRock(against move: Move) -> Rock {
         if beats == move {
-            return .win
+            return .scissors
         } else if losesTo == move {
-            return .lose
+            return .paper
         } else {
-            return .tie
+            return .rock
+        }
+    }
+    
+    func evaluatePaper(against move: Move) -> Paper {
+        if beats == move {
+            return .rock
+        } else if losesTo == move {
+            return .scissors
+        } else {
+            return .paper
+        }
+    }
+    
+    func evaluateScissors(against move: Move) -> Scissors {
+        if beats == move {
+            return .paper
+        } else if losesTo == move {
+            return .rock
+        } else {
+            return .scissors
         }
     }
     
@@ -32,6 +52,7 @@ enum Move: CaseIterable {
             return .paper
         }
     }
+    
     var losesTo: Move {
         switch self {
         case .rock:
@@ -46,6 +67,11 @@ enum Move: CaseIterable {
     static var random: Move {
         Move.allCases.randomElement() ?? .paper
     }
+  
+    // Kauper Suggestion
+//    func beats(other: Move) -> Bool {
+//
+//    }
     
     
 }

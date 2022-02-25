@@ -12,8 +12,6 @@ class ResultsViewController: UIViewController {
     
     var resultsViewControllerText: String?
     var resultsViewControllerImage: UIImage?
-    var userChoice: Move?
-    var generatedAIChoice: Move?
     
     // MARK: Outlets
     
@@ -26,11 +24,13 @@ class ResultsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        print("debug: \(resultsViewControllerImage)")
+        if let resultsViewControllerImage = self.resultsViewControllerImage {
+            self.resultsButton.setBackgroundImage(resultsViewControllerImage, for: .normal)
+        }
         
-        self.resultsButton.setBackgroundImage(resultsViewControllerImage, for: UIControl.State.normal)
-        self.resultsLabel.text = resultsViewControllerText
-        print("User: \(userChoice) vs Computer: \(generatedAIChoice)")
+        if let resultsViewControllerText = self.resultsViewControllerText {
+            self.resultsLabel.text = resultsViewControllerText
+        }
         
         self.resultsButton.alpha = 0
         self.resultsLabel.alpha = 0

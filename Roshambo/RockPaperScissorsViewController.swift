@@ -25,39 +25,35 @@ class RockPaperScissorsViewController: UIViewController {
     // Storyboard only, no code demo (User selects Scissors)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "scissorsSegue" { // only storyboard
+            
             let controller = segue.destination as! ResultsViewController
             
-            let selectedMove = Move.scissors
-            controller.userChoice = selectedMove
+            // Move is scissors because user clicked scissors
+            let usersMove = Move.scissors
             
-            let generatedMove = Move.random
-            controller.generatedAIChoice = generatedMove
+            let computersMove = Move.random
             
-            controller.resultsViewControllerText = selectedMove.gameResult(against: generatedMove).text
-            controller.resultsViewControllerImage = selectedMove.gameResult(against: generatedMove).image
+            controller.resultsViewControllerText = usersMove.evaluateScissors(against: computersMove).text
             
-            
-
-            
+            controller.resultsViewControllerImage = usersMove.evaluateScissors(against: computersMove).image
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
+            
             let controller = segue.destination as! ResultsViewController
             
-            let selectedMove = Move.paper
-            controller.userChoice = selectedMove
+            let usersMove = Move.paper
             
-            let generatedMove = Move.random
-            controller.generatedAIChoice = generatedMove
+            let computersMove = Move.random
             
-            controller.resultsViewControllerText = selectedMove.gameResult(against: generatedMove).text
-            controller.resultsViewControllerImage = selectedMove.gameResult(against: generatedMove).image
+            controller.resultsViewControllerText = usersMove.evaluatePaper(against: computersMove).text
+            
+            controller.resultsViewControllerImage = usersMove.evaluatePaper(against: computersMove).image
         }
     }
     // MARK: Actions
     
     // Storyboard AND Code Demo (User selects Paper)
     @IBAction func letsPlayPaper() {
-        
         self.performSegue(withIdentifier: "paperSegue", sender: self)
     }
     
@@ -66,14 +62,13 @@ class RockPaperScissorsViewController: UIViewController {
         
         let  controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
-        let selectedMove = Move.rock
-        controller.userChoice = selectedMove
+        let usersMove = Move.rock
         
-        let generatedMove = Move.random
-        controller.generatedAIChoice = generatedMove
+        let computersMove = Move.random
         
-        controller.resultsViewControllerText = selectedMove.gameResult(against: generatedMove).text
-        controller.resultsViewControllerImage = selectedMove.gameResult(against: generatedMove).image
+        controller.resultsViewControllerText = usersMove.evaluateRock(against: computersMove).text
+        
+        controller.resultsViewControllerImage = usersMove.evaluateRock(against: computersMove).image
         
         present(controller, animated: true, completion: nil)
     }
