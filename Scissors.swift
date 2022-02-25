@@ -32,13 +32,13 @@ enum Scissors {
         switch self {
         
         case .rock:
-            return UIImage(named: "RockCrushesScissors")
+            return #imageLiteral(resourceName: "RockCrushesScissors")
             
         case .paper:
-            return UIImage(named: "ScissorsCutPaper")
+            return #imageLiteral(resourceName: "ScissorsCutPaper")
             
         case .scissors:
-            return UIImage(named: "itsATie")
+            return #imageLiteral(resourceName: "itsATie")
         }
     }
 }
