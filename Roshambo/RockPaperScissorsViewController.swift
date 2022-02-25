@@ -27,16 +27,30 @@ class RockPaperScissorsViewController: UIViewController {
         if segue.identifier == "scissorsSegue" { // only storyboard
             let controller = segue.destination as! ResultsViewController
             
-            controller.resultsViewControllerText = Move.scissors.gameResult(against: Move.random).text
-            controller.resultsViewControllerImage = Move.scissors.gameResult(against: Move.random).image
+            let selectedMove = Move.scissors
+            controller.userChoice = selectedMove
+            
+            let generatedMove = Move.random
+            controller.generatedAIChoice = generatedMove
+            
+            controller.resultsViewControllerText = selectedMove.gameResult(against: generatedMove).text
+            controller.resultsViewControllerImage = selectedMove.gameResult(against: generatedMove).image
+            
+            
+
             
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
             let controller = segue.destination as! ResultsViewController
             
-            controller.resultsViewControllerText = Move.paper.gameResult(against: Move.random).text
-            controller.resultsViewControllerImage = Move.paper.gameResult(against: Move.random).image
+            let selectedMove = Move.paper
+            controller.userChoice = selectedMove
             
+            let generatedMove = Move.random
+            controller.generatedAIChoice = generatedMove
+            
+            controller.resultsViewControllerText = selectedMove.gameResult(against: generatedMove).text
+            controller.resultsViewControllerImage = selectedMove.gameResult(against: generatedMove).image
         }
     }
     // MARK: Actions
@@ -52,8 +66,14 @@ class RockPaperScissorsViewController: UIViewController {
         
         let  controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
-        controller.resultsViewControllerText = Move.rock.gameResult(against: Move.random).text
-        controller.resultsViewControllerImage = Move.rock.gameResult(against: Move.random).image
+        let selectedMove = Move.rock
+        controller.userChoice = selectedMove
+        
+        let generatedMove = Move.random
+        controller.generatedAIChoice = generatedMove
+        
+        controller.resultsViewControllerText = selectedMove.gameResult(against: generatedMove).text
+        controller.resultsViewControllerImage = selectedMove.gameResult(against: generatedMove).image
         
         present(controller, animated: true, completion: nil)
     }
