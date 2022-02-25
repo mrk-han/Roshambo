@@ -10,10 +10,8 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     
-    // MARK: Properties
-    
-    var userChoice: String?
-    var result: String?
+    var resultsViewControllerText: String?
+    var resultsViewControllerImage: UIImage?
     
     // MARK: Outlets
     
@@ -24,16 +22,10 @@ class ResultsViewController: UIViewController {
     // MARK: Lifecycle + Overrides
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        if let result = self.result {
-            
-            print(result)
-            self.resultsLabel.text = "You win!!!!!!"
-        }
-        
-//        if let result = self.result {
-//            self.resultsImage.setBackgroundImage(UIImage(named: "\(result)"), for: .normal)
-//        }
+        self.resultsImage.setBackgroundImage(resultsViewControllerImage, for: .normal)
+        self.resultsLabel.text = resultsViewControllerText
         
         self.resultsImage.alpha = 0
         self.resultsLabel.alpha = 0
@@ -41,7 +33,9 @@ class ResultsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        UIView.animate(withDuration: 0.3) {
+        super.viewDidAppear(true)
+        
+        UIView.animate(withDuration: 0.5) {
             self.resultsImage.alpha = 1
             self.resultsLabel.alpha = 1
             self.playAgainButton.alpha = 1
