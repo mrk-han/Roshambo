@@ -15,7 +15,7 @@ class ResultsViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet var resultsImage: UIButton!
+    @IBOutlet var resultsButton: UIButton!
     @IBOutlet var resultsLabel: UILabel!
     @IBOutlet var playAgainButton: UIButton!
     
@@ -24,10 +24,10 @@ class ResultsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.resultsImage.setBackgroundImage(resultsViewControllerImage, for: .normal)
+        self.resultsButton.setBackgroundImage(resultsViewControllerImage, for: .normal)
         self.resultsLabel.text = resultsViewControllerText
         
-        self.resultsImage.alpha = 0
+        self.resultsButton.alpha = 0
         self.resultsLabel.alpha = 0
         self.playAgainButton.alpha = 0
     }
@@ -36,7 +36,7 @@ class ResultsViewController: UIViewController {
         super.viewDidAppear(true)
         
         UIView.animate(withDuration: 0.5) {
-            self.resultsImage.alpha = 1
+            self.resultsButton.alpha = 1
             self.resultsLabel.alpha = 1
             self.playAgainButton.alpha = 1
         }

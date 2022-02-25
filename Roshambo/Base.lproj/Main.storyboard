@@ -182,7 +182,7 @@
                     </view>
                     <connections>
                         <outlet property="playAgainButton" destination="cfp-dn-gil" id="bG9-QK-cRN"/>
-                        <outlet property="resultsImage" destination="BVJ-1X-815" id="DQr-Y9-ryb"/>
+                        <outlet property="resultsButton" destination="BVJ-1X-815" id="DQr-Y9-ryb"/>
                         <outlet property="resultsLabel" destination="SrU-GC-h5c" id="Xdi-2F-S1l"/>
                     </connections>
                 </viewController>
