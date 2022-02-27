@@ -60,7 +60,7 @@ class RockPaperScissorsViewController: UIViewController {
     // Code only, NO STORYBOARD demo (User selects Rock)
     @IBAction func letsPlayRock() {
         
-        let  controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
         let usersMove = Move.rock
         
