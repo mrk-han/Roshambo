@@ -13,9 +13,9 @@ enum Move: CaseIterable {
     case scissors
     
     func evaluateRock(against move: Move) -> Rock {
-        if beats == move {
+        if winningMove == move {
             return .scissors
-        } else if losesTo == move {
+        } else if losingMove == move {
             return .paper
         } else {
             return .rock
@@ -23,9 +23,9 @@ enum Move: CaseIterable {
     }
     
     func evaluatePaper(against move: Move) -> Paper {
-        if beats == move {
+        if winningMove == move {
             return .rock
-        } else if losesTo == move {
+        } else if losingMove == move {
             return .scissors
         } else {
             return .paper
@@ -33,16 +33,16 @@ enum Move: CaseIterable {
     }
     
     func evaluateScissors(against move: Move) -> Scissors {
-        if beats == move {
+        if winningMove == move {
             return .paper
-        } else if losesTo == move {
+        } else if losingMove == move {
             return .rock
         } else {
             return .scissors
         }
     }
     
-    var beats: Move {
+    var winningMove: Move {
         switch self {
         case .rock:
             return .scissors
@@ -53,7 +53,7 @@ enum Move: CaseIterable {
         }
     }
     
-    var losesTo: Move {
+    var losingMove: Move {
         switch self {
         case .rock:
             return .paper
