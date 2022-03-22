@@ -10,7 +10,6 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     
-//    var match: RPSMatch! // might not need this?
     var resultsViewControllerText: String?
     var resultsViewControllerImage: UIImage?
     

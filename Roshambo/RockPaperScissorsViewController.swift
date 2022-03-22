@@ -55,8 +55,6 @@ class RockPaperScissorsViewController: UIViewController {
             let match = RPSMatch(p1: usersMove, p2: computersMove, result: result)
             history.append(match)
             
-//            controller.match = match
-            
         } else if segue.identifier == "paperSegue" { // code + storyboard
             
             let controller = segue.destination as! ResultsViewController
@@ -75,7 +73,6 @@ class RockPaperScissorsViewController: UIViewController {
             let match = RPSMatch(p1: usersMove, p2: computersMove, result: result)
             history.append(match)
             
-//            controller.match = match
         }
     }
     // MARK: Actions
@@ -103,8 +100,6 @@ class RockPaperScissorsViewController: UIViewController {
         // create record of match here
         let match = RPSMatch(p1: usersMove, p2: computersMove, result: result)
         history.append(match)
-        
-//        controller.match = match
         
         present(controller, animated: true, completion: nil)
     }

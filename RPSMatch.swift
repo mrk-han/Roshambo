@@ -20,5 +20,4 @@ struct RPSMatch {
         self.result = result
         self.date = Date()
     }
-    
 }

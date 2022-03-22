@@ -12,7 +12,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var tableView: UITableView!
     
-    
     var history: [RPSMatch]!
     var result: String?
     
@@ -32,6 +31,4 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
-    
-    
 }
