@@ -8,6 +8,65 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--History View Controller-->
+        <scene sceneID="kUf-UE-Hkx">
+            <objects>
+                <viewController storyboardIdentifier="HistoryViewController" id="xOK-6L-r0a" customClass="HistoryViewController" customModule="Roshambo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sZz-X8-cMA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="a54-ZK-aKr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryCell" textLabel="Gy5-eo-4UB" detailTextLabel="831-Jg-4UY" style="IBUITableViewCellStyleValue1" id="rPs-fX-aFM">
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rPs-fX-aFM" id="UXy-Hb-csv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gy5-eo-4UB">
+                                                    <rect key="frame" x="16" y="15" width="25" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="831-Jg-4UY">
+                                                    <rect key="frame" x="326" y="15" width="33" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xOK-6L-r0a" id="kcs-yl-NVh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aBN-In-hgq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a54-ZK-aKr" firstAttribute="bottom" secondItem="aBN-In-hgq" secondAttribute="bottom" id="EyZ-FE-7Gf"/>
+                            <constraint firstItem="a54-ZK-aKr" firstAttribute="top" secondItem="aBN-In-hgq" secondAttribute="top" id="JRf-hd-mPv"/>
+                            <constraint firstAttribute="trailing" secondItem="a54-ZK-aKr" secondAttribute="trailing" id="Kzs-uD-2RW"/>
+                            <constraint firstItem="a54-ZK-aKr" firstAttribute="leading" secondItem="aBN-In-hgq" secondAttribute="leading" id="aAq-lC-9ZY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="a54-ZK-aKr" id="GHQ-5i-aCo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I3j-U4-dTm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-799.20000000000005" y="453.82308845577217"/>
+        </scene>
         <!--RockPaperScissorsViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -81,10 +140,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="111.5" height="162"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Qm-n7-64s" userLabel="Empty View">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuH-HZ-nez">
                                                 <rect key="frame" x="111.5" y="0.0" width="112" height="162"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </view>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="History"/>
+                                                <connections>
+                                                    <action selector="presentHistoryPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eeF-CR-nxh"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bu7-Kp-omk" userLabel="Empty View">
                                                 <rect key="frame" x="223.5" y="0.0" width="111.5" height="162"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -134,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="-108" y="4"/>
         </scene>
         <!--ResultsViewController-->
         <scene sceneID="hHD-CH-ZwO">
@@ -229,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2s-ee-fzh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="136"/>
+            <point key="canvasLocation" x="734" y="2"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -9,8 +9,14 @@ import UIKit
 
 class RockPaperScissorsViewController: UIViewController {
     
+    
+    var history = [RPSMatch]()
+    
+    
     // MARK: Outlets
     
+    
+    @IBOutlet var historyButton: UIButton!
     @IBOutlet var rockButton: UIButton!
     @IBOutlet var paperButton: UIButton!
     @IBOutlet var scissorsButton: UIButton!
@@ -33,9 +39,15 @@ class RockPaperScissorsViewController: UIViewController {
             
             let computersMove = Move.random
             
+            // create record of match here
+            let match = RPSMatch(p1: usersMove, p2: computersMove)
+            history.append(match)
+            
+            
             controller.resultsViewControllerText = usersMove.evaluateScissors(against: computersMove).text
             
             controller.resultsViewControllerImage = usersMove.evaluateScissors(against: computersMove).image
+            controller.match = match
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
             
@@ -45,9 +57,14 @@ class RockPaperScissorsViewController: UIViewController {
             
             let computersMove = Move.random
             
+            // create record of match here
+            let match = RPSMatch(p1: usersMove, p2: computersMove)
+            history.append(match)
+            
             controller.resultsViewControllerText = usersMove.evaluatePaper(against: computersMove).text
             
             controller.resultsViewControllerImage = usersMove.evaluatePaper(against: computersMove).image
+            controller.match = match
         }
     }
     // MARK: Actions
@@ -66,9 +83,22 @@ class RockPaperScissorsViewController: UIViewController {
         
         let computersMove = Move.random
         
+        // create record of match here
+        let match = RPSMatch(p1: usersMove, p2: computersMove)
+        history.append(match)
+        
         controller.resultsViewControllerText = usersMove.evaluateRock(against: computersMove).text
         
         controller.resultsViewControllerImage = usersMove.evaluateRock(against: computersMove).image
+        controller.match = match
+        
+        present(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func presentHistoryPage(_ seneder: AnyObject) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "HistoryViewController") as! HistoryViewController
+        
+        controller.history = self.history
         
         present(controller, animated: true, completion: nil)
     }

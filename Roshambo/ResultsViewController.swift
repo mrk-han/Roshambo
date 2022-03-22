@@ -10,7 +10,8 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     
-    var resultsViewControllerText: String?
+    var match: RPSMatch!
+var resultsViewControllerText: String?
     var resultsViewControllerImage: UIImage?
     
     // MARK: Outlets

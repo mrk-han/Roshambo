@@ -67,11 +67,5 @@ enum Move: CaseIterable {
     static var random: Move {
         Move.allCases.randomElement() ?? .paper
     }
-  
-    // Kauper Suggestion
-//    func beats(other: Move) -> Bool {
-//
-//    }
-    
     
 }
