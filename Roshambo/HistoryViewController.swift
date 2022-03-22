@@ -14,6 +14,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     var history: [RPSMatch]!
+    var result: String?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return history.count
@@ -26,7 +27,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let match = self.history[(indexPath as NSIndexPath).row]
         
-        cell.textLabel!.text = "Temporary Text"
+        cell.textLabel!.text = match.result
         cell.detailTextLabel!.text = "\(match.p1) vs. \(match.p2)"
         
         return cell

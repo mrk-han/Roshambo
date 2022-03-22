@@ -12,6 +12,8 @@ class RockPaperScissorsViewController: UIViewController {
     
     var history = [RPSMatch]()
     
+    var result: String?
+    
     
     // MARK: Outlets
     
@@ -37,17 +39,23 @@ class RockPaperScissorsViewController: UIViewController {
             // Move is scissors because user clicked scissors
             let usersMove = Move.scissors
             
+            // important to note when this variable is set, lifespan is 1 match
             let computersMove = Move.random
             
+            // evaluating game result and saving to result string to be put into the RPSMatch
+            result = usersMove.evaluateScissors(against: computersMove).text
+            
+            // passing result to ResultsViewControler
+            controller.resultsViewControllerText = result
+            
+            // evaluating game result again to get image
+            controller.resultsViewControllerImage = usersMove.evaluateScissors(against: computersMove).image
+            
             // create record of match here
-            let match = RPSMatch(p1: usersMove, p2: computersMove)
+            let match = RPSMatch(p1: usersMove, p2: computersMove, result: result)
             history.append(match)
             
-            
-            controller.resultsViewControllerText = usersMove.evaluateScissors(against: computersMove).text
-            
-            controller.resultsViewControllerImage = usersMove.evaluateScissors(against: computersMove).image
-            controller.match = match
+//            controller.match = match
             
         } else if segue.identifier == "paperSegue" { // code + storyboard
             
@@ -57,14 +65,17 @@ class RockPaperScissorsViewController: UIViewController {
             
             let computersMove = Move.random
             
-            // create record of match here
-            let match = RPSMatch(p1: usersMove, p2: computersMove)
-            history.append(match)
+            result = usersMove.evaluatePaper(against: computersMove).text
             
-            controller.resultsViewControllerText = usersMove.evaluatePaper(against: computersMove).text
+            controller.resultsViewControllerText = result
             
             controller.resultsViewControllerImage = usersMove.evaluatePaper(against: computersMove).image
-            controller.match = match
+            
+            // create record of match here
+            let match = RPSMatch(p1: usersMove, p2: computersMove, result: result)
+            history.append(match)
+            
+//            controller.match = match
         }
     }
     // MARK: Actions
@@ -83,14 +94,17 @@ class RockPaperScissorsViewController: UIViewController {
         
         let computersMove = Move.random
         
-        // create record of match here
-        let match = RPSMatch(p1: usersMove, p2: computersMove)
-        history.append(match)
+        result = usersMove.evaluateRock(against: computersMove).text
         
-        controller.resultsViewControllerText = usersMove.evaluateRock(against: computersMove).text
+        controller.resultsViewControllerText = result
         
         controller.resultsViewControllerImage = usersMove.evaluateRock(against: computersMove).image
-        controller.match = match
+        
+        // create record of match here
+        let match = RPSMatch(p1: usersMove, p2: computersMove, result: result)
+        history.append(match)
+        
+//        controller.match = match
         
         present(controller, animated: true, completion: nil)
     }
@@ -99,6 +113,7 @@ class RockPaperScissorsViewController: UIViewController {
         let controller = storyboard?.instantiateViewController(withIdentifier: "HistoryViewController") as! HistoryViewController
         
         controller.history = self.history
+        controller.result = self.result
         
         present(controller, animated: true, completion: nil)
     }
